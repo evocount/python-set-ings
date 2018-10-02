@@ -1,44 +1,123 @@
-from setuptools import setup, find_packages
-from codecs import open
-from os import path
+# adopted from https://github.com/kennethreitz/setup.py/blob/master/setup.py
 
-here = path.abspath(path.dirname(__file__))
+import io
+import os
+import sys
+from shutil import rmtree
 
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+from setuptools import find_packages, setup, Command
 
+NAME = 'python-set-ings'
+DESCRIPTION = 'Load configuration from the environment for your python app.'
+URL = 'https://github.com/evocount/python-set-ings'
+EMAIL = 'till.theato@evocount.de'
+AUTHOR = 'Till Theato'
+REQUIRES_PYTHON = '>=3.6.0'
+VERSION = None
+
+# What packages are required for this module to be executed?
+REQUIRED = [
+    # 'requests', 'maya', 'records',
+]
+
+EXTRAS = {
+    'test': [
+        'pytest',
+        'pytest-cov'
+    ],
+}
+
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+try:
+    with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
+        long_description = '\n' + f.read()
+except FileNotFoundError:
+    long_description = DESCRIPTION
+
+# Load the package's __version__.py module as a dictionary.
+about = {}
+if not VERSION:
+    with open(os.path.join(here, NAME, '__version__.py')) as f:
+        exec(f.read(), about)
+else:
+    about['__version__'] = VERSION
+
+
+class UploadCommand(Command):
+    """Support setup.py upload."""
+
+    description = 'Build and publish the package.'
+    user_options = []
+
+    @staticmethod
+    def status(s):
+        """Prints things in bold."""
+        print('\033[1m{0}\033[0m'.format(s))
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        try:
+            self.status('Removing previous builds…')
+            rmtree(os.path.join(here, 'dist'))
+        except OSError:
+            pass
+
+        self.status('Building Source and Wheel (universal) distribution…')
+        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+
+        self.status('Uploading the package to PyPI via Twine…')
+        os.system('twine upload dist/*')
+
+        self.status('Pushing git tags…')
+        os.system('git tag v{0}'.format(about['__version__']))
+        os.system('git push --tags')
+
+        sys.exit()
+
+
+# Where the magic happens:
 setup(
-    name='python-set-ings',
-    version='0.1.0',
-    description='Load configuration from the environment for your python app.',
+    name=NAME,
+    version=about['__version__'],
+    description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/evocount/python-set-ings',
-    author='Till Theato',
-    author_email='till.theato@evocount.de',
-    license='MIT',
+    author=AUTHOR,
+    author_email=EMAIL,
+    python_requires=REQUIRES_PYTHON,
+    url=URL,
+    packages=find_packages(exclude=('tests',)),
+    # If your package is a single module, use this instead of 'packages':
+    # py_modules=['mypackage'],
 
-    # see: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    # entry_points={
+    #     'console_scripts': ['mycli=mymodule:cli'],
+    # },
+    install_requires=REQUIRED,
+    extras_require=EXTRAS,
+    include_package_data=True,
+    license='MIT',
     classifiers=[
+        # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
 
         'License :: OSI Approved :: MIT License',
-
+        'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy'
     ],
-
-    python_requires='>=3.6',
-
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-
-    # install_requires=[],
-
-    extras_require={
-        'test': [
-            'pytest',
-            'pytest-cov'
-        ],
+    # $ setup.py publish support.
+    cmdclass={
+        'upload': UploadCommand,
     },
 )
