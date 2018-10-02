@@ -40,7 +40,7 @@ print(settings.FOO + 2)
 
 ### Installation
 
-* `git clone <this repo>`
+* `git clone git@github.com:evocount/python-set-ings.git`
 * `cd python-set-ings`
 * `pipenv install --dev`
 
