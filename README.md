@@ -4,8 +4,7 @@ Load configuration from the environment for your python app. Supports typecastin
 
 ## Installation
 
-* `pipenv install git+https://github.com/evocount/python-set-ings.git#egg=python-set-ings`
-* (after I published to pypi: `pipenv install python-set-ings` or `pip install python-set-ings`)
+* `pipenv install python-set-ings` or `pip install python-set-ings`
 
 ## Usage
 
@@ -19,7 +18,7 @@ from set_ings import Settings as SettingsBase
 Settings(SettingsBase):
     _PREFIX = 'YOUR_PREFIX'
 
-    FOO = Property(cast=int, default=10)
+    FOO = Property(10, cast=int)
     BAR = Property()
 
 
