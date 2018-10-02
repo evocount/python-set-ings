@@ -8,6 +8,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 NAME = 'python-set-ings'
+MODULE = 'set_ings'
 DESCRIPTION = 'Load configuration from the environment for your python app.'
 URL = 'https://github.com/evocount/python-set-ings'
 EMAIL = 'till.theato@evocount.de'
@@ -39,7 +40,7 @@ except FileNotFoundError:
 # Load the package's __version__.py module as a dictionary.
 about = {}
 if not VERSION:
-    with open(os.path.join(here, NAME, '__version__.py')) as f:
+    with open(os.path.join(here, MODULE, '__version__.py')) as f:
         exec(f.read(), about)
 else:
     about['__version__'] = VERSION
