@@ -4,7 +4,8 @@ Load configuration from the environment for your python app. Supports typecastin
 
 ## Installation
 
-* `pipenv install python-set-ings` or `pip install python-set-ings`
+* `pipenv install git+https://github.com/evocount/python-set-ings.git#egg=python-set-ings`
+* (after I published to pypi: `pipenv install python-set-ings` or `pip install python-set-ings`)
 
 ## Usage
 
