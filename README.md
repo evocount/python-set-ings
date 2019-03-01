@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/evocount/python-set-ings.svg?branch=master)](https://travis-ci.org/evocount/python-set-ings)
+[![PyPI version](https://badge.fury.io/py/python-set-ings.svg)](https://badge.fury.io/py/python-set-ings)
+
 # Python set-ings
 
 Load configuration from the environment for your python app. Supports typecasting and default values. Settings are made available in a way which plays nicely with IDEs and is easy to read.
