@@ -8,7 +8,7 @@ dist: xenial
 
 install:
   - pip install pipenv
-  - pipenv install
+  - pipenv install --dev
   - pip install codecov
 
 script:
