@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/evocount/python-set-ings.svg?branch=master)](https://travis-ci.org/evocount/python-set-ings)
 [![PyPI version](https://badge.fury.io/py/python-set-ings.svg)](https://badge.fury.io/py/python-set-ings)
+[![Build Status](https://travis-ci.org/evocount/python-set-ings.svg?branch=master)](https://travis-ci.org/evocount/python-set-ings)
+[![codecov](https://codecov.io/gh/evocount/python-set-ings/branch/master/graph/badge.svg)](https://codecov.io/gh/evocount/python-set-ings)
 
 # Python set-ings
 
