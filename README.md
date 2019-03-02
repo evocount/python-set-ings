@@ -49,8 +49,7 @@ print(settings.FOO + 2)
 
 ### Running tests
 
-* `pipenv run pytest`
-or `pipenv run pytest --cov set_ings`
+* `pipenv run pytest --cov`
 
 ## License
 

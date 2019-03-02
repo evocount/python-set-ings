@@ -1,0 +1,3 @@
+[run]
+source=set_ings
+omit=set_ings/__version__.py

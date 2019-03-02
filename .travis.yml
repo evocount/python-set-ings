@@ -9,6 +9,10 @@ dist: xenial
 install:
   - pip install pipenv
   - pipenv install
+  - pip install codecov
 
 script:
-  - pytest
+  - pytest --cov
+
+after_success:
+  - codecov
