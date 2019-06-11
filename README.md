@@ -2,6 +2,11 @@
 [![Build Status](https://travis-ci.org/evocount/python-set-ings.svg?branch=master)](https://travis-ci.org/evocount/python-set-ings)
 [![codecov](https://codecov.io/gh/evocount/python-set-ings/branch/master/graph/badge.svg)](https://codecov.io/gh/evocount/python-set-ings)
 
+
+# DEPRECATED
+
+This package is deprecated. [pydantic](https://pydantic-docs.helpmanual.io/) provides the [same featureset](https://pydantic-docs.helpmanual.io/#settings) and much more.
+
 # Python set-ings
 
 Load configuration from the environment for your python app. Supports typecasting and default values. Settings are made available in a way which plays nicely with IDEs and is easy to read.
